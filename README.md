@@ -15,7 +15,7 @@ Please see the file Kinnersley_NUT_May_5_2024.ipynb as an example.
 -- Dl (D), Dn (buyuk Delta), Dm (kucuk delta) ve Dmbar (kucuk deltabar) olarak tanimli. 
 -- Turevler ic ice kullanilabilir.
 
-"opconj" fonksiyonu: Eslenik almak icin ozel fonksiyon. 
+- "opconj" fonksiyonu: Eslenik almak icin ozel fonksiyon. 
 (conjugate kullanilirsa l ve n yonundeki turevler de kompleks oluyor).
 
 - Komutatorler, esittir sifir olacak sekilde (X girdi):
