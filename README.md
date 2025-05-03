@@ -14,7 +14,7 @@ Please see the file Kinnersley_NUT_May_5_2024.ipynb as an example.
 # * Commands:
 
 - Derivatives:
--- Dl (D), Dn (buyuk Delta), Dm (small delta) and Dmbar (small deltabar). 
+-- Dl (D), Dn (capital Delta), Dm (small delta) and Dmbar (small deltabar). 
 -- Derivatives can be nested.
 
 - "opconj" function: A special function for conjugation. 
