@@ -1,38 +1,40 @@
 # CoordFreeNP: Coordinate-free approach to NP calculations
 
+This work is funded by TUBITAK 1001 Program, Grant Number 123R114.
+
 Please see the file Kinnersley_NUT_May_5_2024.ipynb as an example.
 
-# * Tanimli olan parametreler:
+# * Defined parameters:
 
 - alpha,beta,epsilon,gamma,kappa,mu,nu,pi,rho,sigma,tau
 - lambda, "lambdaa" olarak tanimli. Yazarken LaTeX $\lambda$ olarak gösteriyor.
 - Phi00,Phi01,Phi02,Phi10,Phi11,Phi12,Phi20,Phi21,Phi22,Lambda
 - Psi0,Psi1,Psi2,Psi3,Psi4
 
-# * Kullanilabilecek komutlar:
+# * Commands:
 
-- Turevler:
--- Dl (D), Dn (buyuk Delta), Dm (kucuk delta) ve Dmbar (kucuk deltabar) olarak tanimli. 
--- Turevler ic ice kullanilabilir.
+- Derivatives:
+-- Dl (D), Dn (buyuk Delta), Dm (small delta) and Dmbar (small deltabar). 
+-- Derivatives can be nested.
 
-- "opconj" fonksiyonu: Eslenik almak icin ozel fonksiyon. 
-(conjugate kullanilirsa l ve n yonundeki turevler de kompleks oluyor).
+- "opconj" function: A special function for conjugation. 
+(If "conjugate" is used, l and n-directed derivatives are also complex).
 
-- Komutatorler, esittir sifir olacak sekilde (X girdi):
+- Commutators, equals zero (X input):
 -- Dn_Dl_com(X): [Dn,Dl]
 -- Dm_Dl_com(X): [Dm,Dl]
 -- Dm_Dn_com(X): [Dm, Dn]
 -- Dmbar_Dm_comNP(X): [Dmbar, Dm]
 
 - NPeqs(): 
--- NP denklemlerini =0 olacak sekilde hesaplar ve yazar. 
--- Ciktilar NP1, .., NP18 seklinde kullanilabilir.
+-- Calculate and write NP equations with =0. 
+-- Outputs can be used as NP1, ..., NP18.
 
 - Bianchi():
--- Bianchi ozdesliklerini =0 olacak sekilde hesaplar ve yazar. 
--- Ciktilar BI1, .., BI11 seklinde kullanilabilir.
+-- Calculate and write Bianchi equations with =0. 
+-- Outputs can be used as BI1, ..., BI11.
 
-- Carmeli ve Kaye makalesinde tanimlanan donusumler (z girdi):
+- Transformations as defined in the Carmeli and Kaye paper (z input):
 -- CKA(z): A. Null Rotation about l
 -- CKB(z): B. Boost in l-n Plane and Spatial Rotation in m-mbar Plane
 -- CKC(z): C. Null Rotation about n
