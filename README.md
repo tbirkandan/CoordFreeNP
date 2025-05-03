@@ -7,7 +7,7 @@ Please see the file Kinnersley_NUT_May_5_2024.ipynb as an example.
 # * Defined parameters:
 
 - alpha,beta,epsilon,gamma,kappa,mu,nu,pi,rho,sigma,tau
-- lambda, "lambdaa" olarak tanimli. Yazarken LaTeX $\lambda$ olarak gösteriyor.
+- lambda is defined as "lambdaa". Displays as LaTeX $\lambda$.
 - Phi00,Phi01,Phi02,Phi10,Phi11,Phi12,Phi20,Phi21,Phi22,Lambda
 - Psi0,Psi1,Psi2,Psi3,Psi4
 
