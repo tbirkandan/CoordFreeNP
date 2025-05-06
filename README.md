@@ -2,6 +2,10 @@
 
 This work is funded by TUBITAK 1001 Program, Grant Number 123R114.
 
+Copy the file **NPDerivatives.sage** into your directory and load it by
+
+**load("NPDerivatives.sage")**
+
 Please see the file Kinnersley_NUT_May_5_2024.ipynb as an example.
 
 # * Defined parameters:
