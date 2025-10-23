@@ -414,7 +414,8 @@ Dmbar = function("Dmbar",latex_name=r"\bar{\delta}",eval_func=efDmbar)
 # Page 77, Eq.(7.6)
 var('alpha,beta,epsilon,gamma,kappa,mu,nu,pi,rho,sigma,tau',domain='complex')
 var('lambdaa',latex_name=r"\lambda",domain='complex')
-var('Phi00,Phi01,Phi02,Phi10,Phi11,Phi12,Phi20,Phi21,Phi22,Lambda',domain='complex')
+var('Phi01,Phi02,Phi10,Phi12,Phi20,Phi21',domain='complex')
+var('Phi00,Phi11,Phi22,Lambda',domain='real')
 var('Psi0,Psi1,Psi2,Psi3,Psi4',domain='complex')
 
 # Commutations as =0.
