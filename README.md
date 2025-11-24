@@ -10,48 +10,39 @@ Please see the file **Coordinate_Free_Example.ipynb** as an example.
 
 # * Defined parameters:
 
-- alpha,beta,epsilon,gamma,kappa,mu,nu,pi,rho,sigma,tau
-- lambda is defined as "lambdaa". Displays as LaTeX $\lambda$.
-- Phi00,Phi01,Phi02,Phi10,Phi11,Phi12,Phi20,Phi21,Phi22,Lambda
-- Psi0,Psi1,Psi2,Psi3,Psi4
+# - alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau
+# - lambda, defined as "lambdaa". Displays as LaTeX $\lambda$.
+# - Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda
+# - Psi0, Psi1, Psi2, Psi3, Psi4
 
 # * Commands:
 
-- Derivatives:
-  
--- Dl (D), Dn (capital Delta), Dm (small delta) and Dmbar (small deltabar). 
+# - General: 
+# -- "showall" function: The function to show all NP parameters.
+# -- "opconj" function: Special function for conjugation. (If conjugate is used, derivatives in the l and n directions also become complex).
 
---Derivatives can be nested.
+# - Derivatives:
+# -- Defined as Dl (D), Dn (Capital Delta), Dm (small delta), and Dmbar (small deltabar). 
+# -- Derivatives can be nested.
 
-- "opconj" function: A special function for conjugation. 
-(If "conjugate" is used, l and n-directed derivatives are also complex).
+# - Commutators, such that they equal zero (X input):
+# -- Dn_Dl_com(X): [Dn,Dl]
+# -- Dm_Dl_com(X): [Dm,Dl]
+# -- Dm_Dn_com(X): [Dm, Dn]
+# -- Dmbar_Dm_comNP(X): [Dmbar, Dm]
 
-- Commutators, equals zero (X input):
+# - NPeqs(): 
+# -- Calculates and writes the NP equations such that they equal zero. 
+# -- Outputs can be used in the form NP1, .., NP18.
 
--- Dn_Dl_com(X): [Dn,Dl]
+# - Bianchi():
+# -- Calculates and writes Bianchi identities such that they equal 0. 
+# -- Outputs can be used in the form BI1, .., BI11.
 
--- Dm_Dl_com(X): [Dm,Dl]
-
--- Dm_Dn_com(X): [Dm, Dn]
-
--- Dmbar_Dm_comNP(X): [Dmbar, Dm]
-
-- NPeqs(): 
-
--- Calculate and write NP equations with =0. 
-
--- Outputs can be used as NP1, ..., NP18.
-
-- Bianchi():
-
--- Calculate and write Bianchi equations with =0. 
-
--- Outputs can be used as BI1, ..., BI11.
-
-- Transformations as defined in the Carmeli and Kaye paper (z input):
-
--- CKA(z): A. Null Rotation about l
-
--- CKB(z): B. Boost in l-n Plane and Spatial Rotation in m-mbar Plane
-
--- CKC(z): C. Null Rotation about n
+# - Transformations defined in the Carmeli and Kaye paper (z input):
+# -- CKAdo(z): A. Null Rotation about l (Do transformation and the parameters will change)
+# -- CKBdo(z): B. Boost in l-n Plane and Spatial Rotation in m-mbar Plane (Do transformation and the parameters will change)
+# -- CKCdo(z): C. Null Rotation about n (Do transformation and the parameters will change)
+# -- CKAsee(z): A. Null Rotation about l (See the results of the transformation and the parameters will not change)
+# -- CKBsee(z): B. Boost in l-n Plane and Spatial Rotation in m-mbar Plane (See the results of the transformation and the parameters will not change)
+# -- CKCsee(z): C. Null Rotation about n (See the results of the transformation and the parameters will not change)
