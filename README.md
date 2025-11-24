@@ -10,13 +10,13 @@ Please see the file **Coordinate_Free_Example.ipynb** as an example.
 
 * Defined parameters:
 
-- alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau
+-- alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau
   
-- lambda, defined as "lambdaa". Displays as LaTeX $\lambda$.
+-- lambda, defined as "lambdaa". Displays as LaTeX $\lambda$.
   
-- Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda
+-- Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda
   
-- Psi0, Psi1, Psi2, Psi3, Psi4
+-- Psi0, Psi1, Psi2, Psi3, Psi4
 
 * Commands:
 
