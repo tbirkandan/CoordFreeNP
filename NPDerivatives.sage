@@ -1,37 +1,41 @@
-# * Tanimli olan parametreler:
+# * Defined parameters:
 
-# - alpha,beta,epsilon,gamma,kappa,mu,nu,pi,rho,sigma,tau
-# - lambda, "lambdaa" olarak tanimli. Yazarken LaTeX $\lambda$ olarak gösteriyor.
-# - Phi00,Phi01,Phi02,Phi10,Phi11,Phi12,Phi20,Phi21,Phi22,Lambda
-# - Psi0,Psi1,Psi2,Psi3,Psi4
+# - alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau
+# - lambda, defined as "lambdaa". Displays as LaTeX $\lambda$.
+# - Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda
+# - Psi0, Psi1, Psi2, Psi3, Psi4
 
-# * Kullanilabilecek komutlar:
+# * Commands:
 
-# - Turevler:
-# -- Dl (D), Dn (buyuk Delta), Dm (kucuk delta) ve Dmbar (kucuk deltabar) olarak tanimli. 
-# -- Turevler ic ice kullanilabilir.
+# - General: 
+# -- "showall" function: The function to show all NP parameters.
+# -- "opconj" function: Special function for conjugation. (If conjugate is used, derivatives in the l and n directions also become complex).
 
-# "opconj" fonksiyonu: Eslenik almak icin ozel fonksiyon. 
-# (conjugate kullanilirsa l ve n yonundeki turevler de kompleks oluyor).
+# - Derivatives:
+# -- Defined as Dl (D), Dn (Capital Delta), Dm (small delta), and Dmbar (small deltabar). 
+# -- Derivatives can be nested.
 
-# - Komutatorler, esittir sifir olacak sekilde (X girdi):
+# - Commutators, such that they equal zero (X input):
 # -- Dn_Dl_com(X): [Dn,Dl]
 # -- Dm_Dl_com(X): [Dm,Dl]
 # -- Dm_Dn_com(X): [Dm, Dn]
 # -- Dmbar_Dm_comNP(X): [Dmbar, Dm]
 
 # - NPeqs(): 
-# -- NP denklemlerini =0 olacak sekilde hesaplar ve yazar. 
-# -- Ciktilar NP1, .., NP18 seklinde kullanilabilir.
+# -- Calculates and writes the NP equations such that they equal zero. 
+# -- Outputs can be used in the form NP1, .., NP18.
 
 # - Bianchi():
-# -- Bianchi ozdesliklerini =0 olacak sekilde hesaplar ve yazar. 
-# -- Ciktilar BI1, .., BI11 seklinde kullanilabilir.
+# -- Calculates and writes Bianchi identities such that they equal 0. 
+# -- Outputs can be used in the form BI1, .., BI11.
 
-# - Carmeli ve Kaye makalesinde tanimlanan donusumler (z girdi):
-# -- CKA(z): A. Null Rotation about l
-# -- CKB(z): B. Boost in l-n Plane and Spatial Rotation in m-mbar Plane
-# -- CKC(z): C. Null Rotation about n
+# - Transformations defined in the Carmeli and Kaye paper (z input):
+# -- CKAdo(z): A. Null Rotation about l (Do transformation and the parameters will change)
+# -- CKBdo(z): B. Boost in l-n Plane and Spatial Rotation in m-mbar Plane (Do transformation and the parameters will change)
+# -- CKCdo(z): C. Null Rotation about n (Do transformation and the parameters will change)
+# -- CKAsee(z): A. Null Rotation about l (See the results of the transformation and the parameters will not change)
+# -- CKBsee(z): B. Boost in l-n Plane and Spatial Rotation in m-mbar Plane (See the results of the transformation and the parameters will not change)
+# -- CKCsee(z): C. Null Rotation about n (See the results of the transformation and the parameters will not change)
 
 ##################################################################
 from sage.symbolic.operators import add_vararg, mul_vararg
@@ -49,6 +53,12 @@ def opconjfunc(self,X):
         myoprnd=X.operands()[0]
     except:
         myoprnd=X
+
+    if X.operator() == exp:
+        return exp(opconj(log(X)))
+
+    if X.operator() == log:
+        return log(opconj(exp(X)))
 
     if X.operator() == operator.pow:
         try:
@@ -414,8 +424,8 @@ Dmbar = function("Dmbar",latex_name=r"\bar{\delta}",eval_func=efDmbar)
 # Page 77, Eq.(7.6)
 var('alpha,beta,epsilon,gamma,kappa,mu,nu,pi,rho,sigma,tau',domain='complex')
 var('lambdaa',latex_name=r"\lambda",domain='complex')
-var('Phi01,Phi02,Phi10,Phi12,Phi20,Phi21',domain='complex')
-var('Phi00,Phi11,Phi22,Lambda',domain='real')
+var('Phi01,Phi02,Phi10,Phi12,Phi20,Phi21,Lambda',domain='complex')
+var('Phi00,Phi11,Phi22',domain='real')
 var('Psi0,Psi1,Psi2,Psi3,Psi4',domain='complex')
 
 # Commutations as =0.
@@ -513,10 +523,111 @@ def Bianchi():
     show("BI11=0=",BI11)
     print("Bianchi identities are ready to use as BI1(=0), BI2(=0), ..., BI11(=0).")
 ##################################################################
+def showall():
+    global alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda, Psi0, Psi1, Psi2, Psi3, Psi4
+    show("alpha=",alpha)
+    show("beta=",beta)
+    show("epsilon=",epsilon)
+    show("gamma=",gamma)
+    show("kappa=",kappa)
+    show("mu=",mu)
+    show("nu=",nu)
+    show("pi=",pi)
+    show("rho=",rho)
+    show("sigma=",sigma)
+    show("tau=",tau)
+    show("lambda=",lambdaa)
+    show("Phi00=",Phi00)
+    show("Phi01=",Phi01)
+    show("Phi02=",Phi02)
+    show("Phi10=",Phi10)
+    show("Phi11=",Phi11)
+    show("Phi12=",Phi12)
+    show("Phi20=",Phi20)
+    show("Phi21=",Phi21)
+    show("Phi22=",Phi22)
+    show("Lambda=",Lambda)
+    show("Psi0=",Psi0)
+    show("Psi1=",Psi1)
+    show("Psi2=",Psi2)
+    show("Psi3=",Psi3)
+    show("Psi4=",Psi4)
+
 ##################################################################
 #Carmeli and Kaye Article Transformations
 ##################################################################
-def CKA(z):
+##################################
+def simplifyPhis(alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda, Psi0, Psi1, Psi2, Psi3, Psi4):
+
+    s01, s02, s10, s12, s20, s21 = SR.var('Phi01, Phi02, Phi10, Phi12, Phi20, Phi21')
+
+    subs_dict = {
+        conjugate(s01):s10,
+        conjugate(s10):s01,
+        conjugate(s02):s20,
+        conjugate(s12):s21,
+        conjugate(s20):s02,
+        conjugate(s21):s12        
+    }
+
+    input_list = [alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda, Psi0, Psi1, Psi2, Psi3, Psi4]
+    output_list = []
+
+    for expr in input_list:
+        temp = expr.subs(subs_dict)
+        final_val = temp.canonicalize_radical()
+        
+        output_list.append(final_val)
+
+    return output_list
+##################################
+def CKAdo(z):
+    global alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda, Psi0, Psi1, Psi2, Psi3, Psi4
+
+    var('newalpha, newbeta, newepsilon, newgamma, newkappa, newmu, newnu, newpi, newrho, newsigma, newtau, newlambdaa, newPhi01, newPhi02, newPhi10, newPhi12, newPhi20, newPhi21, newPsi0, newPsi1, newPsi2, newPsi3, newPsi4',domain='complex')
+
+    var('newPhi00, newPhi11, newPhi22',domain='real')
+
+    print("Null Rotation about l")
+    #A. Null Rotation about l
+
+    newrho=rho+z*kappa
+    newalpha=alpha+z*(rho+epsilon)+z^2*kappa
+    newlambdaa=lambdaa+z*(pi+2*alpha)+z^2*(rho+2*epsilon)+z^3*kappa+Dmbar(z)+z*Dl(z)
+    newkappa=kappa
+    newepsilon=epsilon+z*kappa
+    newpi=pi+2*z*epsilon+z^2*kappa+Dl(z)
+    newsigma=sigma+conjugate(z)*kappa
+    newbeta=beta+z*sigma+conjugate(z)*epsilon+z*conjugate(z)*kappa
+    newmu=mu+2*z*beta+conjugate(z)*pi+z^2*sigma+2*z*conjugate(z)*epsilon+z^2*conjugate(z)*kappa+Dm(z)+conjugate(z)*Dl(z)
+    newtau=tau+z*sigma+conjugate(z)*rho+z*conjugate(z)*kappa
+    newgamma=gamma+z*(tau+beta)+conjugate(z)*alpha+z^2*sigma+z*conjugate(z)*(rho+epsilon)+z^2*conjugate(z)*kappa
+    newnu=nu+z*(mu+2*gamma)+conjugate(z)*lambdaa+z^2*(2*beta+tau)+z*conjugate(z)*(2*alpha+pi)+z^2*conjugate(z)*(2*epsilon+rho)+z^3*sigma+z^3*conjugate(z)*kappa+Dn(z)+z*Dm(z)+conjugate(z)*Dmbar(z)+z*conjugate(z)*Dl(z)
+
+    newPsi0=Psi0
+    newPsi1=z*Psi0+Psi1
+    newPsi2=z^2*Psi0+2*z*Psi1+Psi2
+    newPsi3=z^3*Psi0+3*z^2*Psi1+3*z*Psi2+Psi3
+    newPsi4=z^4*Psi0+4*z^3*Psi1+6*z^2*Psi2+4*z*Psi3+Psi4
+
+    newPhi00=(Phi00)
+    newPhi01=(conjugate(z)*Phi00+Phi01)
+    newPhi02=(conjugate(z)^2)*Phi00+2*conjugate(z)*Phi01+Phi02
+    newPhi11=(z*conjugate(z)*Phi00+z*Phi01+conjugate(z)*Phi10+Phi11)
+    newPhi12=(z*conjugate(z)^2*Phi00+2*conjugate(z)*z*Phi01+z*Phi02+2*conjugate(z)*Phi11+conjugate(z)^2*Phi10+Phi12)
+    newPhi22=(z^2*conjugate(z)^2*Phi00+2*conjugate(z)*z^2*Phi01+z^2*Phi02+2*conjugate(z)^2*z*Phi10+4*conjugate(z)*z*Phi11+2*z*Phi12+conjugate(z)^2*Phi20+2*conjugate(z)*Phi21+Phi22)
+
+    alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Psi0, Psi1, Psi2, Psi3, Psi4=newalpha, newbeta, newepsilon, newgamma, newkappa, newmu, newnu, newpi, newrho, newsigma, newtau, newlambdaa, newPhi00, newPhi01, newPhi02, newPhi10, newPhi11, newPhi12, newPhi20, newPhi21, newPhi22, newPsi0, newPsi1, newPsi2, newPsi3, newPsi4
+
+    Phi10=opconj(Phi01)
+    Phi20=opconj(Phi02)
+    Phi21=opconj(Phi12)
+
+    (alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda, Psi0, Psi1, Psi2, Psi3, Psi4)=simplifyPhis(alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda, Psi0, Psi1, Psi2, Psi3, Psi4)
+    
+
+#####################################
+def CKAsee(z):
     print("Null Rotation about l")
     #A. Null Rotation about l
 
@@ -602,7 +713,52 @@ def CKA(z):
     show("Phi12tr=0=",z*conjugate(z)^2*Phi00+2*conjugate(z)*z*Phi01+z*Phi02+2*conjugate(z)*Phi11+conjugate(z)^2*Phi10+Phi12-Phi12x)
     show("Phi22tr=0=",z^2*conjugate(z)^2*Phi00+2*conjugate(z)*z^2*Phi01+z^2*Phi02+2*conjugate(z)^2*z*Phi10+4*conjugate(z)*z*Phi11+2*z*Phi12+conjugate(z)^2*Phi20+2*conjugate(z)*Phi21+Phi22-Phi22x)
 ##################################################################
-def CKB(z):
+def CKBdo(z):
+    global alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda, Psi0, Psi1, Psi2, Psi3, Psi4
+
+    var('newalpha, newbeta, newepsilon, newgamma, newkappa, newmu, newnu, newpi, newrho, newsigma, newtau, newlambdaa, newPhi01, newPhi02, newPhi10, newPhi12, newPhi20, newPhi21, newPsi0, newPsi1, newPsi2, newPsi3, newPsi4',domain='complex')
+
+    var('newPhi00, newPhi11, newPhi22',domain='real')
+
+    print("Boost in l-n Plane and Spatial Rotation in m-mbar Plane")
+    #B. Boost in l-n Plane and Spatial Rotation in m-mbar Plane
+
+    newrho=z*conjugate(z)*rho
+    newalpha=z^(-1)*conjugate(z)*(alpha-z*Dmbar(z^(-1)))
+    newlambdaa=z^(-3)*conjugate(z)*lambdaa
+    newkappa=z^(3)*conjugate(z)*kappa
+    newepsilon=z*conjugate(z)*(epsilon-z*Dl(z^(-1)))
+    newpi=z^(-1)*conjugate(z)*pi
+    newsigma=z^(3)*conjugate(z)^(-1)*sigma
+    newbeta=z*conjugate(z)^(-1)*(beta-z*Dm(z^(-1)))
+    newmu=z^(-1)*conjugate(z)^(-1)*mu
+    newtau=z*conjugate(z)^(-1)*tau
+    newgamma=z^(-1)*conjugate(z)^(-1)*(gamma-z*Dn(z^(-1)))
+    newnu=z^(-3)*conjugate(z)^(-1)*nu
+
+    newPsi0=z^(4)*Psi0
+    newPsi1=z^(2)*Psi1
+    newPsi2=Psi2
+    newPsi3=z^(-2)*Psi3
+    newPsi4=z^(-4)*Psi4
+
+    newPhi00=(z^(2)*conjugate(z)^2*Phi00)
+    newPhi01=(z^(2)*Phi01)
+    newPhi02=(z^(2)*conjugate(z)^(-2)*Phi02)
+    newPhi11=(Phi11)
+    newPhi12=(conjugate(z)^(-2)*Phi12)
+    newPhi22=(z^(-2)*conjugate(z)^(-2)*Phi22)
+
+    alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Psi0, Psi1, Psi2, Psi3, Psi4=newalpha, newbeta, newepsilon, newgamma, newkappa, newmu, newnu, newpi, newrho, newsigma, newtau, newlambdaa, newPhi00, newPhi01, newPhi02, newPhi10, newPhi11, newPhi12, newPhi20, newPhi21, newPhi22, newPsi0, newPsi1, newPsi2, newPsi3, newPsi4
+
+    Phi10=opconj(Phi01)
+    Phi20=opconj(Phi02)
+    Phi21=opconj(Phi12)
+
+    (alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda, Psi0, Psi1, Psi2, Psi3, Psi4)=simplifyPhis(alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda, Psi0, Psi1, Psi2, Psi3, Psi4)
+
+#####################################
+def CKBsee(z):
     print("Boost in l-n Plane and Spatial Rotation in m-mbar Plane")
     #B. Boost in l-n Plane and Spatial Rotation in m-mbar Plane
 
@@ -687,7 +843,52 @@ def CKB(z):
     show("Phi12tr=0=",conjugate(z)^(-2)*Phi12-Phi12x)
     show("Phi22tr=0=",z^(-2)*conjugate(z)^(-2)*Phi22-Phi22x)
 ##################################################################
-def CKC(z):
+def CKCdo(z):
+    global alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda, Psi0, Psi1, Psi2, Psi3, Psi4
+
+    var('newalpha, newbeta, newepsilon, newgamma, newkappa, newmu, newnu, newpi, newrho, newsigma, newtau, newlambdaa, newPhi01, newPhi02, newPhi10, newPhi12, newPhi20, newPhi21, newPsi0, newPsi1, newPsi2, newPsi3, newPsi4',domain='complex')
+
+    var('newPhi00, newPhi11, newPhi22',domain='real')
+    
+    print("Null Rotation about n")
+    #C. Null Rotation about n
+
+    newrho=rho + 2*z*alpha + conjugate(z)*tau + z^2*lambdaa + 2*z*conjugate(z)*gamma + z^2*conjugate(z)*nu - Dmbar(z) - conjugate(z)*Dn(z)
+    newalpha=alpha + z*lambdaa + conjugate(z)*gamma + z*conjugate(z)*nu
+    newlambdaa=lambdaa + conjugate(z)*nu
+    newkappa=kappa + z*(rho + 2*epsilon) + conjugate(z)*sigma + z^2*(2*alpha + pi) + z*conjugate(z)*(2*beta + tau) + z^2*conjugate(z)*(2*gamma + mu) + z^3*lambdaa + z^3*conjugate(z)*nu - Dl(z)- z*Dmbar(z)- conjugate(z)*Dm(z)- z*conjugate(z)*Dn(z)
+    newepsilon=epsilon + z*(pi + alpha) + conjugate(z)*beta + z^2*lambdaa + z*conjugate(z)*(mu + gamma) + z^2*conjugate(z)*nu
+    newpi=pi + 2*lambdaa + conjugate(z)*mu + z*conjugate(z)*nu
+    newsigma=sigma + z*(tau + 2*beta) + z^2*(mu + 2*gamma)+ z^3*nu - Dm(z) - z*Dn(z)
+    newbeta=beta + z*(mu + gamma) + z^2*nu
+    newmu=mu + z*nu
+    newtau=tau + 2*gamma*z + z^2*nu - Dn(z)
+    newgamma=gamma + z*nu
+    newnu=nu
+
+    newPsi0=Psi0 + 4*z*Psi1 + 6*z^2*Psi2 + 4*z^3*Psi3 + z^4*Psi4
+    newPsi1=Psi1 + 3*z*Psi2 + 3*z^2*Psi3 + z^3*Psi4
+    newPsi2=Psi2 + 2*z*Psi3 + z^2*Psi4
+    newPsi3=Psi3 + z*Psi4
+    newPsi4=Psi4
+
+    newPhi00=(Phi00 + 2*conjugate(z)*Phi01 + 2*z*Phi10 + 4*z*conjugate(z)*Phi11 + conjugate(z^2)*Phi02 + z^2*Phi20 + 2*z^2*conjugate(z)*Phi21 + 2*conjugate(z^2)*Phi12 + conjugate(z^2)*z^2*Phi22)
+    newPhi10=(Phi10 + 2*conjugate(z)*Phi11 + z*Phi20 + 2*z*conjugate(z)*Phi21 + conjugate(z^2)*Phi12 + conjugate(z^2)*z*Phi22)
+    newPhi11=(Phi11 + conjugate(z)*Phi12 + z*Phi21 + conjugate(z)*z*Phi22)
+    newPhi20=(Phi20 + 2*conjugate(z)*Phi21 + conjugate(z^2)*Phi22)
+    newPhi21=(Phi21 + conjugate(z)*Phi22)
+    newPhi22=(Phi22)
+
+    alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Psi0, Psi1, Psi2, Psi3, Psi4=newalpha, newbeta, newepsilon, newgamma, newkappa, newmu, newnu, newpi, newrho, newsigma, newtau, newlambdaa, newPhi00, newPhi01, newPhi02, newPhi10, newPhi11, newPhi12, newPhi20, newPhi21, newPhi22, newPsi0, newPsi1, newPsi2, newPsi3, newPsi4
+
+    Phi01=opconj(Phi10)
+    Phi02=opconj(Phi20)
+    Phi12=opconj(Phi21)
+
+    (alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda, Psi0, Psi1, Psi2, Psi3, Psi4)=simplifyPhis(alpha, beta, epsilon, gamma, kappa, mu, nu, pi, rho, sigma, tau, lambdaa, Phi00, Phi01, Phi02, Phi10, Phi11, Phi12, Phi20, Phi21, Phi22, Lambda, Psi0, Psi1, Psi2, Psi3, Psi4)
+
+#####################################
+def CKCsee(z):
     print("Null Rotation about n")
     #C. Null Rotation about n
 
